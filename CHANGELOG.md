@@ -26,6 +26,19 @@
   - strings now live next to each feature, they are merged in a pre-build msbuild task and sent to output
   - responses, cmds and names (previously aliases) are now all .yml
 
+## [6.1.8] - 20.05.2026
+
+### Changed 
+
+- Nunchi renamed to CountUp - visual improvements
+
+### Fixed
+
+- Fixed `.shopadd cmd`
+- Scheduled commands will now be cleaned up if they're too long
+
+### Removed 
+
 ## [6.1.7] - 14.04.2025
 
 ### Fixed

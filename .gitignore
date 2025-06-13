@@ -13,14 +13,14 @@ src/NadekoBot/creds.yml
 src/NadekoBot/data/creds.yml
 src/NadekoBot/Command Errors*.txt
 src/NadekoBot/data/NadekoBot.db*
-src/NadekoBot/strings
-src/NadekoBot.Tests/strings
 
 # Created by https://www.gitignore.io/api/visualstudio,visualstudiocode,windows,linux,macos
 
 ### VisualStudioCode ###
 .vscode/
 .vscode/*
+.idea/
+.idea/**
 # !.vscode/settings.json
 # !.vscode/tasks.json
 # !.vscode/launch.json
@@ -369,6 +369,7 @@ site/
 ## AI
 
 .aider.*
+.roo/**
 PROMPT.md
 .*rules
 
@@ -376,4 +377,3 @@ PROMPT.md
 Pipfile
 Pipfile.lock
 .venv
-.roo
