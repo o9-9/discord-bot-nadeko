@@ -2,6 +2,7 @@
 
 *a,c,f,r,o*
 
+<<<<<<< HEAD
 ## [6.2.0] - 
 
 ### Added
@@ -27,6 +28,23 @@
   - responses, cmds and names (previously aliases) are now all .yml
 
 ## [6.1.8] - 20.05.2026
+=======
+## [6.1.9] - 09.07.2025
+
+
+## [6.1.8] - 20.05.2025
+
+## Changed
+
+- .warn should also work on users who are not in the server now
+- dm after voting will tell you the platform you voted on
+
+### Fixed
+
+- Fixed unmute/ban/kick not getting removed from db
+- Fixed default xp bar length
+- Linkfix now considers subdomains a different site
+>>>>>>> b2b0c9a (docs: updated changelog, version upped to 6.1.9)
 
 ### Changed 
 
