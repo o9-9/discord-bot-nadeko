@@ -3,6 +3,7 @@
 *a,c,f,r,o*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## [6.2.0] - 
 
 ### Added
@@ -33,6 +34,9 @@
 
 
 ## [6.1.8] - 20.05.2025
+=======
+## [6.1.19] - 09.07.2025
+>>>>>>> b55ea4b (fix: unfixed version as previous one was really 6.1.7 followed by 6.1.18, fixed tests. New version is 6.1.19)
 
 ## Changed
 
