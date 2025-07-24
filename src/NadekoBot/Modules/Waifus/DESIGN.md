@@ -15,8 +15,9 @@
             - Mood
             - Hunger
         - You get 2 actions per day
-            - Any user can .hug / .pat a waifu
-            - Users can give gifts that
+            - Any user can .hug / .kiss/ .pat a waifu
+              - This increases waifu's mood
+            - Users can give gifts that improve mood, hunger, neither or both
     - +2 if you vote
     - +1-6 if you're patron
         - Fans will have to keep the waifu well-fed, rested and happy

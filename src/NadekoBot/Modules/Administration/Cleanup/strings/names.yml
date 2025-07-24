@@ -1,6 +1,2 @@
 cleanupguilddata:
   - cleanupguilddata
-keep:
-  - keep
-leaveunkeptservers:
-  - leaveunkeptservers

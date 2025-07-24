@@ -72,8 +72,6 @@ public class MergeStringsTask : Task
 
                 if (!match.Success)
                 {
-                    Log.LogMessage(MessageImportance.High,
-                        $"Skipping file '{fileName}' as it doesn't match cmds.<lang>.yml pattern.");
                     continue;
                 }
 
