@@ -7,12 +7,12 @@ namespace NadekoBot.Modules.Gambling;
 
 public partial class MultipleWaifuItemsTypeReader : NadekoTypeReader<MultipleWaifuItems>
 {
-    private readonly WaifuService _service;
-    
+    private readonly GamblingConfigService _service;
+
     [GeneratedRegex(@"(?:(?<count>\d+)[x*])?(?<item>.+)")]
     private static partial Regex ItemRegex();
 
-    public MultipleWaifuItemsTypeReader(WaifuService service)
+    public MultipleWaifuItemsTypeReader(GamblingConfigService service)
     {
         _service = service;
     }
@@ -35,7 +35,7 @@ public partial class MultipleWaifuItemsTypeReader : NadekoTypeReader<MultipleWai
         }
         
         var itemName = match.Groups["item"].Value?.ToLowerInvariant();
-        var allItems = _service.GetWaifuItems();
+        var allItems = _service.Data.Waifu.Items;
         var item = allItems.FirstOrDefault(x => x.Name.ToLowerInvariant() == itemName);
         if (item is null)
         {

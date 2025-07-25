@@ -8,12 +8,6 @@ public class WnHCommands(WnHService svc) : NadekoModule
         user ??= ctx.User;
     }
 
-    private enum WaifuAction
-    {
-        Hug,
-        Kiss,
-        Pat
-    }
 
     private string GetImage(WaifuAction action)
     {
@@ -22,7 +16,7 @@ public class WnHCommands(WnHService svc) : NadekoModule
 
     private async Task ImproveMood(WaifuAction action, IUser user)
     {
-        var res = await svc.ImproveMood(user.Id, user.Id);
+        var res = await svc.ImproveMood(ctx.User.Id, user.Id, action);
         var img = GetImage(action);
         await Response()
             .Embed(_sender.CreateEmbed()
