@@ -220,7 +220,7 @@ public partial class Games
             await Response()
                 .Paginated()
                 .PageItems(async p => await fs.GetFishLbAsync(p))
-                .PageSize(9)
+                .PageSize(10)
                 .Page(async (items, page) =>
                 {
                     var users = await us.GetUsersAsync(items.Select(x => x.UserId).ToArray());
@@ -242,7 +242,7 @@ public partial class Games
                                *{GetText(strs.fish_catches(data.Catches))}*
                              """;
 
-                        eb.AddField("#" + (page * 9 + i + 1) + " | " + user,
+                        eb.AddField("#" + (page * 10 + i + 1) + " | " + user,
                             text,
                             false);
                     }

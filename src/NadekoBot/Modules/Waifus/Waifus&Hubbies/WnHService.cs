@@ -59,5 +59,18 @@ public class WnHService
     {
         return new Success();
     }
+
+    public async Task<WaifuInfo> GetWaifuInfo(ulong userId)
+    {
+        return new WaifuInfo()
+        {
+        };
+    }
+
+    
+    private async Task OptInInternalAsync(ulong userId, string name)
+    public async Task OptInAsync(ulong userId, string name)
+    {
+    }
 }
 
