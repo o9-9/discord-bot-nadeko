@@ -80,7 +80,7 @@ public class RemindService : INService, IReadyExecutor, IRemindService
     {
         await using var uow = _db.GetDbContext();
         await uow.GetTable<Reminder>()
-                 .DeleteAsync(x => reminders.Contains(x.Id));
+            .DeleteAsync(x => reminders.Contains(x.Id));
 
         await uow.SaveChangesAsync();
     }
@@ -92,12 +92,12 @@ public class RemindService : INService, IReadyExecutor, IRemindService
             _tcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
             await using var uow = _db.GetDbContext();
             var earliest = await uow.Set<Reminder>()
-                                    .ToLinqToDBTable()
-                                    .Where(x => Queries.GuildOnShard(x.ServerId,
-                                        _creds.TotalShards,
-                                        _client.ShardId))
-                                    .OrderBy(x => x.When)
-                                    .FirstOrDefaultAsyncLinqToDB();
+                .ToLinqToDBTable()
+                .Where(x => Queries.GuildOnShard(x.ServerId,
+                    _creds.TotalShards,
+                    _client.ShardId))
+                .OrderBy(x => x.When)
+                .FirstOrDefaultAsyncLinqToDB();
 
             if (earliest == default)
             {
@@ -106,21 +106,33 @@ public class RemindService : INService, IReadyExecutor, IRemindService
             }
 
             var now = DateTime.UtcNow;
-            if (earliest.When > now)
+            if (earliest.When > now.AddSeconds(2))
             {
                 var diff = earliest.When - now;
-                // Log.Information("Waiting for {Diff}", diff);
-                await Task.WhenAny(Task.Delay(diff), _tcs.Task);
-                continue;
+                if (diff > TimeSpan.FromDays(30))
+                {
+                    diff = TimeSpan.FromDays(30);
+                }
+                
+                if (diff < TimeSpan.FromSeconds(1))
+                {
+                    Log.Warning("Weird, delay is less than 1");
+                    await Task.Delay(1000);
+                }
+                else
+                {
+                    await Task.WhenAny(Task.Delay(diff), _tcs.Task);
+                    continue;
+                }
             }
 
             var reminders = await uow.Set<Reminder>()
-                                     .ToLinqToDBTable()
-                                     .Where(x => Queries.GuildOnShard(x.ServerId,
-                                         _creds.TotalShards,
-                                         _client.ShardId))
-                                     .Where(x => x.When <= now)
-                                     .DeleteWithOutputAsync();
+                .ToLinqToDBTable()
+                .Where(x => Queries.GuildOnShard(x.ServerId,
+                    _creds.TotalShards,
+                    _client.ShardId))
+                .Where(x => x.When <= now)
+                .DeleteWithOutputAsync();
 
             return reminders;
         }
@@ -227,7 +239,7 @@ public class RemindService : INService, IReadyExecutor, IRemindService
             var st = SmartText.CreateFrom(r.Message);
 
             var res = _sender.Response(ch)
-                             .UserBasedMentions(_client.GetGuild(r.ServerId)?.GetUser(r.UserId));
+                .UserBasedMentions(_client.GetGuild(r.ServerId)?.GetUser(r.UserId));
 
             if (st is SmartEmbedText set)
             {
@@ -240,15 +252,15 @@ public class RemindService : INService, IReadyExecutor, IRemindService
             else
             {
                 await res
-                      .Embed(_sender.CreateEmbed(r.ServerId)
-                                    .WithOkColor()
-                                    .WithTitle("Reminder")
-                                    .AddField("Created At",
-                                        r.DateAdded.HasValue ? r.DateAdded.Value.ToLongDateString() : "?")
-                                    .AddField("By",
-                                        (await ch.GetUserAsync(r.UserId))?.ToString() ?? r.UserId.ToString()))
-                      .Text(r.Message)
-                      .SendAsync();
+                    .Embed(_sender.CreateEmbed(r.ServerId)
+                        .WithOkColor()
+                        .WithTitle("Reminder")
+                        .AddField("Created At",
+                            r.DateAdded.HasValue ? r.DateAdded.Value.ToLongDateString() : "?")
+                        .AddField("By",
+                            (await ch.GetUserAsync(r.UserId))?.ToString() ?? r.UserId.ToString()))
+                    .Text(r.Message)
+                    .SendAsync();
             }
         }
         catch (Exception ex)
@@ -275,17 +287,17 @@ public class RemindService : INService, IReadyExecutor, IRemindService
         await using (var ctx = _db.GetDbContext())
         {
             await ctx.GetTable<Reminder>()
-                     .InsertAsync(() => new Reminder
-                     {
-                         UserId = userId,
-                         ChannelId = targetId,
-                         ServerId = guildId ?? 0,
-                         IsPrivate = isPrivate,
-                         When = time,
-                         Message = message,
-                         Type = reminderType,
-                         DateAdded = DateTime.UtcNow
-                     });
+                .InsertAsync(() => new Reminder
+                {
+                    UserId = userId,
+                    ChannelId = targetId,
+                    ServerId = guildId ?? 0,
+                    IsPrivate = isPrivate,
+                    When = time,
+                    Message = message,
+                    Type = reminderType,
+                    DateAdded = DateTime.UtcNow
+                });
             await ctx.SaveChangesAsync();
         }
 

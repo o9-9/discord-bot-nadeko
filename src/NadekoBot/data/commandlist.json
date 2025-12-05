@@ -4091,6 +4091,20 @@
     },
     {
       "Aliases": [
+        ".fishslb",
+        ".fislb"
+      ],
+      "Description": "Shows the top anglers based on total stars.",
+      "Usage": [
+        ".fishslb"
+      ],
+      "Submodule": "FishingCommands",
+      "Module": "Games",
+      "Options": null,
+      "Requirements": []
+    },
+    {
+      "Aliases": [
         ".fishshop",
         ".fishop"
       ],
@@ -8743,6 +8757,20 @@
         ".xpshop bgs",
         ".xpshop frames",
         ".xpshop bgs 3"
+      ],
+      "Submodule": "Xp",
+      "Module": "Xp",
+      "Options": null,
+      "Requirements": []
+    },
+    {
+      "Aliases": [
+        ".xpowned",
+        ".xpo"
+      ],
+      "Description": "Shows a list of your owned xp backgrounds and frames.",
+      "Usage": [
+        ".xpowned"
       ],
       "Submodule": "Xp",
       "Module": "Xp",

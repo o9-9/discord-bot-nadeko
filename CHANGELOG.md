@@ -2,9 +2,7 @@
 
 *a,c,f,r,o*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## [6.2.0] - 
+## [6.2.0] -
 
 ### Added
 
@@ -28,15 +26,33 @@
   - strings now live next to each feature, they are merged in a pre-build msbuild task and sent to output
   - responses, cmds and names (previously aliases) are now all .yml
 
-## [6.1.8] - 20.05.2026
-=======
-## [6.1.9] - 09.07.2025
+## [6.1.21] - 05.12.2025
 
+### Fixed
+- Fixed the voice encryption error
 
-## [6.1.8] - 20.05.2025
-=======
+## [6.1.20] - 11.11.2025
+
+### Added
+- Added `.fishstarslb` / `.fislb` command to show top anglers by stars collected
+- Added `.xpowned` command to view owned xp items
+- Added `.conf search feeds.maxcount` configuration option for search feeds
+
+### Changed
+- `.edit` now adds ✅ reaction on successful execution
+- `.playlists` output is now paginated for better readability
+
+### Fixed
+- Role hierarchy checks in vcrole command (!!!)
+- `qse` command now shows an output on no results
+- Fixed occasional guild timezone null reference errors
+- Fixed Page count display in `.pls title`
+- Fixed Page 0 navigation in `.pls` commands
+- Fixed reminder system crashing under specific conditions
+- Fixed reminders longer than 30 days crashing the remind system
+- Null reference edge cases in scheduled commands
+
 ## [6.1.19] - 09.07.2025
->>>>>>> b55ea4b (fix: unfixed version as previous one was really 6.1.7 followed by 6.1.18, fixed tests. New version is 6.1.19)
 
 ## Changed
 
@@ -48,9 +64,8 @@
 - Fixed unmute/ban/kick not getting removed from db
 - Fixed default xp bar length
 - Linkfix now considers subdomains a different site
->>>>>>> b2b0c9a (docs: updated changelog, version upped to 6.1.9)
 
-### Changed 
+### Changed
 
 - Nunchi renamed to CountUp - visual improvements
 
@@ -59,7 +74,7 @@
 - Fixed `.shopadd cmd`
 - Scheduled commands will now be cleaned up if they're too long
 
-### Removed 
+### Removed
 
 ## [6.1.7] - 14.04.2025
 

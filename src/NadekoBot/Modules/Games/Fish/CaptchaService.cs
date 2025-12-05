@@ -7,7 +7,6 @@ using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 using Color = SixLabors.ImageSharp.Color;
 
-
 namespace NadekoBot.Modules.Games;
 
 public sealed class CaptchaService(FontProvider fonts, IBotCache cache, IPatronageService ps) : INService
@@ -32,8 +31,7 @@ public sealed class CaptchaService(FontProvider fonts, IBotCache cache, IPatrona
         // draw password on the image
         img.Mutate(x =>
         {
-            DrawTextExtensions.DrawText(x,
-                new RichTextOptions(font)
+            x.DrawText(new RichTextOptions(font)
                 {
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
